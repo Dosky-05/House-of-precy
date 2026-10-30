@@ -1,0 +1,61 @@
+export const categories = ['All pieces', 'Clothing', 'Bags', 'Shoes']
+
+export const contacts = {
+  whatsapp: '2347040556421',
+  alternate: '2349016279988',
+}
+
+export const paymentDetails = {
+  bankName: 'Moniepoint MFB',
+  accountName: 'Blessing Nkechinyere Nwaezego',
+  accountNumber: '5344047383',
+}
+
+export const products = [
+  ['Black Straight-Leg Jeans', 'Clothing', 'A dark denim staple for easy everyday outfits.', 32000, '/IMG_8733.JPG'],
+  ['Sand Relaxed-Fit Tee', 'Clothing', 'A soft neutral tee with an easy, relaxed shape.', 22000, '/IMG_8746.JPG'],
+  ['Supreme Logo Tee', 'Clothing', 'A clean graphic tee for a casual statement.', 24000, '/IMG_8752.JPG'],
+  ['Burgundy Low-Top Sneakers', 'Shoes', 'A sporty low-top pair with a bold burgundy finish.', 42000, '/IMG_8767.JPG'],
+  ['Brown Strap Heels', 'Shoes', 'A warm-toned heel for dressed-up plans.', 38000, '/IMG_8782.JPG'],
+  ['Silver Pointed Heels', 'Shoes', 'A metallic pointed heel with a polished finish.', 42000, '/IMG_8783.JPG'],
+  ['Red Strappy Heels', 'Shoes', 'A standout red heel for evenings and occasions.', 42000, '/IMG_8794.JPG'],
+  ['Blue Strappy Heels', 'Shoes', 'A statement blue heel with delicate straps.', 42000, '/IMG_8797.JPG'],
+  ['Printed Two-Piece Set', 'Clothing', 'A coordinated printed look with a playful finish.', 48000, '/IMG_8802.JPG'],
+  ['Yellow Cut-Out Dress', 'Clothing', 'A bright occasion dress with a sculpted silhouette.', 52000, '/IMG_8803.JPG'],
+  ['NYC Graphic Top', 'Clothing', 'A black graphic top with a bold city-inspired print.', 24000, '/IMG_8805.JPG'],
+  ['Black Twist-Front Top', 'Clothing', 'A versatile black top with a gathered front detail.', 26000, '/IMG_8807.JPG'],
+  ['Printed Top and Trouser Set', 'Clothing', 'A matching printed outfit with an easy statement look.', 50000, '/IMG_8810.JPG'],
+  ['Blue Skinny Jeans', 'Clothing', 'A classic blue denim pair for everyday wear.', 34000, '/IMG_8816.JPG'],
+  ['Black Comfort Slides', 'Shoes', 'An easy black slide for relaxed everyday wear.', 24000, '/IMG_8819_2.JPG'],
+  ['Black Chelsea Boots', 'Shoes', 'A sleek ankle boot with a clean, versatile shape.', 48000, '/IMG_8820_2.JPG'],
+  ['Black Logo Slides', 'Shoes', 'A lightweight slide with a sporty logo detail.', 24000, '/IMG_8821_2.JPG'],
+  ['Black Leather Loafers', 'Shoes', 'A polished black loafer for smart-casual outfits.', 46000, '/IMG_8823_2.JPG'],
+  ['Brown Leather Dress Shoes', 'Shoes', 'A classic lace-up pair for a sharper finish.', 48000, '/IMG_8824_2.JPG'],
+  ['Black Buckle Slides', 'Shoes', 'A practical black slide with a clean buckle detail.', 26000, '/IMG_8826_3.JPG'],
+  ['Blue Printed Button-Up', 'Clothing', 'A patterned button-up for an easy statement look.', 32000, '/IMG_8828.JPG'],
+  ['Olive Utility Jacket', 'Clothing', 'A structured olive layer with a relaxed utility feel.', 48000, '/IMG_8829.JPG'],
+  ['Brown Casual Loafers', 'Shoes', 'A relaxed brown loafer for everyday styling.', 38000, '/IMG_8834.JPG'],
+  ['Black Red-Logo Slides', 'Shoes', 'A sporty black slide with a contrasting logo.', 24000, '/IMG_8835.JPG'],
+  ['Black Everyday Slides', 'Shoes', 'A simple, versatile slide for off-duty days.', 22000, '/IMG_8837.JPG'],
+  ['White Logo Slides', 'Shoes', 'A bright white slide with a sporty logo detail.', 26000, '/IMG_8842.JPG'],
+  ['Red Floral Dress', 'Clothing', 'A floral dress with a vivid, occasion-ready print.', 48000, '/IMG_8853.JPG'],
+  ['Blue Graphic Tee', 'Clothing', 'A black tee featuring a bold blue graphic print.', 26000, '/IMG_8865.JPG'],
+  ['Red Graphic Tee', 'Clothing', 'A black tee with a high-contrast red graphic.', 26000, '/IMG_8866.JPG'],
+  ['Layered-Hem Logo Tee', 'Clothing', 'A black logo tee with a layered contrast hem.', 28000, '/IMG_8867.JPG'],
+  ['Hear No Evil Graphic Tee', 'Clothing', 'A graphic tee with a bold illustrated front print.', 28000, '/IMG_8868.JPG'],
+  ['Green Hype Graphic Tee', 'Clothing', 'A black tee with a large tonal graphic on the back.', 28000, '/IMG_8874.JPG'],
+  ['Black Quilted Shoulder Bag', 'Bags', 'A quilted black shoulder bag with a polished gold-tone clasp.', 55000, '/IMG_8884.JPG'],
+  ['Mini Knot-Handle Shoulder Bag', 'Bags', 'A compact shoulder bag shown in a range of easy-to-style colors.', 38000, '/IMG_8885.JPG'],
+  ['Brown Quilted Mini Bag', 'Bags', 'A quilted brown mini bag with a top handle and gold-tone details.', 42000, '/IMG_8886.JPG'],
+  ['Studded Mini Tote Bag', 'Bags', 'A structured mini tote with an all-over studded pattern.', 34000, '/IMG_8887.JPG'],
+  ['Structured Top-Handle Bag', 'Bags', 'A classic structured handbag shown in a selection of bold colors.', 52000, '/IMG_8888.JPG'],
+].map(([name, category, note, price, image], index) => ({
+  id: index + 1,
+  name,
+  category,
+  note,
+  price,
+  description: note,
+  image,
+  tag: '',
+}))
