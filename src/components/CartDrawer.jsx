@@ -26,7 +26,6 @@ export default function CartDrawer({
   const [step, setStep] = useState('cart')
   const [customer, setCustomer] = useState({ name: '', phone: '', address: '', deliveryArea: '' })
   const [order, setOrder] = useState(null)
-  const [proofFile, setProofFile] = useState(null)
 
   if (!open) return null
 
@@ -55,27 +54,12 @@ export default function CartDrawer({
       'Order:',
       itemLines,
       `Items subtotal: ${formatCurrency(order.subtotal)}`,
-      `Payment proof: ${proofFile.name}`,
     ].join('\n')
   }
 
-  async function sendOrderToWhatsApp() {
+  function sendOrderToWhatsApp() {
     const message = buildOrderMessage()
     const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`
-
-    if (navigator.share && navigator.canShare?.({ files: [proofFile] })) {
-      try {
-        await navigator.share({
-          files: [proofFile],
-          title: `House of Precy order ${order.reference}`,
-          text: message,
-        })
-        setStep('confirmation')
-        return
-      } catch (error) {
-        if (error.name === 'AbortError') return
-      }
-    }
 
     window.open(whatsappUrl, '_blank', 'noopener,noreferrer')
     setStep('confirmation')
@@ -85,7 +69,6 @@ export default function CartDrawer({
     setStep('cart')
     setCustomer({ name: '', phone: '', address: '', deliveryArea: '' })
     setOrder(null)
-    setProofFile(null)
     onOrderComplete()
   }
 
@@ -136,7 +119,7 @@ export default function CartDrawer({
           <div className="payment-step">
             <div className="order-reference"><span>ORDER REFERENCE</span><strong>{order.reference}</strong></div>
             <p className="payment-amount">Items subtotal <strong>{formatCurrency(order.subtotal)}</strong></p>
-            <p className="checkout-note">Wait for us to confirm the delivery fee for {order.customer.deliveryArea} before transferring.</p>
+            <p className="checkout-note">After this payment you'll still have to discuss delivery fees with the owner, in chat.</p>
             {paymentDetails.bankName && paymentDetails.accountName && paymentDetails.accountNumber ? (
               <dl className="bank-details">
                 <div><dt>Bank</dt><dd>{paymentDetails.bankName}</dd></div>
@@ -147,18 +130,17 @@ export default function CartDrawer({
             ) : (
               <p className="payment-warning" role="status">Bank transfer details are not configured yet. Please contact us on WhatsApp before making a payment.</p>
             )}
-            <label className="proof-upload">Proof of payment<input type="file" accept="image/*,application/pdf" required onChange={(event) => setProofFile(event.target.files?.[0] || null)} /><span>{proofFile ? proofFile.name : 'Choose an image or PDF'}</span></label>
-            <p className="checkout-note">Your order details will be prefilled in WhatsApp. On devices that support file sharing, you can share the proof directly; otherwise, attach it in the WhatsApp chat.</p>
+            <p className="payment-warning" role="note">After completing your transfer, tap “Send order and proof” to open the owner’s WhatsApp chat with your order details pre-filled. Simply attach your payment receipt and send the message to complete your order.</p>
             <div className="checkout-actions">
               <button className="text-link" type="button" onClick={() => setStep('checkout')}><ArrowLeft size={16} /> Edit details</button>
-              <button className="primary-button" type="button" onClick={sendOrderToWhatsApp} disabled={!proofFile}>Send order and proof <ArrowRight size={18} /></button>
+              <button className="primary-button" type="button" onClick={sendOrderToWhatsApp}>Send order and proof <ArrowRight size={18} /></button>
             </div>
           </div>
         ) : (
           <div className="payment-step order-confirmation">
             <div className="order-reference"><span>ORDER REFERENCE</span><strong>{order.reference}</strong></div>
-            <p className="confirmation-message">Thank you for your order! Please make sure you send your order details and payment proof in WhatsApp. We’ll confirm your order with you there.</p>
-            <p className="checkout-note">If WhatsApp did not open, you can go back and try again. Your bag will stay saved until you confirm that you sent the message.</p>
+            <p className="confirmation-message">Your order details are ready in the owner’s WhatsApp chat. Attach your payment proof and send the message; we’ll confirm your order with you there.</p>
+            <p className="checkout-note">If WhatsApp did not open, go back and try again. Your bag will stay saved until you confirm that you sent the message.</p>
             <div className="checkout-actions">
               <button className="text-link" type="button" onClick={() => setStep('payment')}><ArrowLeft size={16} /> Back to payment</button>
               <button className="primary-button" type="button" onClick={confirmOrderSent}>I’ve sent it — clear my bag</button>
